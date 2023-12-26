@@ -18,36 +18,42 @@ articles = [article1, article2, article3, article4, article5, article6, article7
 # Création d'une instance de la boutique
 ma_boutique = Boutique(articles)
 
+
 def afficher_menu():
     print("1. Vendre un article")
     print("2. Approvisionner un article")
     print("3. Consulter le stock d'un article")
     print("4. Générer la facture totale des achats")
-    print("5. Quitter")
+    print("5. Details sur un article")
+    print("6. Quitter")
 
 def executer_action(choix):
     if choix == 1:
+        ma_boutique.liste()
         identifiant = int(input("Entrez l'identifiant de l'article à vendre : "))
         quantite = int(input("Entrez la quantité à vendre : "))
         print(ma_boutique.vendre(identifiant, quantite))
     elif choix == 2:
+        ma_boutique.liste()
         identifiant = int(input("Entrez l'identifiant de l'article à approvisionner : "))
         quantite = int(input("Entrez la quantité à approvisionner : "))
         print(ma_boutique.approvisionner(identifiant, quantite))
     elif choix == 3:
+        ma_boutique.liste()
         identifiant = int(input("Entrez l'identifiant de l'article à consulter : "))
         print(ma_boutique.consulter(identifiant))
     elif choix == 4:
-        achats = {}  # Dictionnaire pour stocker les achats
-        while True:
-            identifiant = int(input("Entrez l'identifiant de l'article à acheter (0 pour terminer) : "))
-            if identifiant == 0:
-                break
-            quantite = int(input("Entrez la quantité à acheter : "))
-            achats[identifiant] = achats.get(identifiant, 0) + quantite
-        print(ma_boutique.facture_total_achats(achats))
-    elif choix == 5:
+
+        print(ma_boutique.facture_total_achats())
+    elif choix == 6:
         print("Merci et au revoir !")
+    elif choix == 5:
+        ma_boutique.liste()
+        print("\n \n")
+        identifiant = int(input("Entrez l'identifiant de l'article à detailler : "))
+        print(ma_boutique.detailsArticle(identifiant))
+
     else:
         print("Choix invalide.")
+
 
